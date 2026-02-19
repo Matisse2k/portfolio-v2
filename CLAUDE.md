@@ -10,6 +10,11 @@ npm run preview   # Preview production build locally
 npm run lint      # Run ESLint
 ```
 
+## Conventions
+
+- When creating a new page component, always add a navigation link to it in the header (`src/App.jsx`).
+- All git commits must follow the [Conventional Commits](https://www.conventionalcommits.org) spec: `<type>[optional scope]: <description>` (e.g. `feat(header): add dark mode toggle`, `fix(section): correct border color prop`).
+
 ## Architecture
 
 React 19 + Vite portfolio site styled with Tailwind CSS v3.
