@@ -1,5 +1,7 @@
 import './App.css'
 import Section from './Section'
+import ProjectCard from './ProjectCard'
+import { projects } from './data/projects'
 
 function App() {
 
@@ -33,8 +35,12 @@ function App() {
         </Section>
 
         {/* Projects Section */}
-        <Section title= "Projects" borderColor= "border-yellow-600">
-            Hier moeten projecten komen te staan
+        <Section title="Projects" borderColor="border-yellow-600">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
         </Section>
 
       </main>

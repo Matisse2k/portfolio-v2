@@ -14,6 +14,7 @@ npm run lint      # Run ESLint
 
 - When creating a new page component, always add a navigation link to it in the header (`src/App.jsx`).
 - All git commits must follow the [Conventional Commits](https://www.conventionalcommits.org) spec: `<type>[optional scope]: <description>` (e.g. `feat(header): add dark mode toggle`, `fix(section): correct border color prop`).
+- After every coding task, update `CLAUDE.md` to reflect any new or changed files (Architecture section), implemented features (Planned Features checklist), and data file conventions.
 
 ## Architecture
 
@@ -21,7 +22,9 @@ React 19 + Vite portfolio site styled with Tailwind CSS v3.
 
 - `src/main.jsx` — entry point, mounts `<App>` into `#root`
 - `src/App.jsx` — root layout: sticky header with contact links, then `<main>` containing `<Section>` blocks
-- `src/Section.jsx` — reusable section component; accepts `title`, `borderColor` (Tailwind class), and `children` props. Renders a left-bordered section card.
+- `src/Section.jsx` — reusable section component; accepts `title`, `borderColor` (Tailwind class), and `children` props. Renders a left-bordered section card. Children are wrapped in a `<div>` (not `<p>`) to support any content including grids.
+- `src/ProjectCard.jsx` — renders a single project card; accepts a `project` prop (object from `projects.js`). Shows title, description, tech tags, and optional GitHub/live links.
+- `src/data/projects.js` — array of project objects; edit this file to add/update projects
 - `src/index.css` — Tailwind directives only (`@tailwind base/components/utilities`)
 - `src/App.css` — additional app-level styles if needed
 
@@ -57,9 +60,9 @@ The project uses plain JavaScript (`.jsx`), not TypeScript.
 
 All portfolio content lives in `src/data/` as plain JS/JSON for easy editing:
 
-- `src/data/personal.js` — name, bio, tagline, social links
-- `src/data/projects.js` — array of project objects
-- `src/data/skills.js` — tech stack & skills
+- `src/data/personal.js` — name, bio, tagline, social links *(planned)*
+- `src/data/projects.js` — array of project objects *(implemented)*
+- `src/data/skills.js` — tech stack & skills *(planned)*
 
 **Rationale:** 
 - Quick to implement and maintain
@@ -76,9 +79,8 @@ export const projects = [
     title: "Project Name",
     description: "Brief description...",
     tech: ["React", "Vue", "Spring Boot"],
-    image: "/images/project1.png",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/username/repo"
+    liveUrl: "https://example.com", // leave empty string "" to hide the link
+    githubUrl: "https://github.com/username/repo" // leave empty string "" to hide the link
   }
 ]
 ```
@@ -89,7 +91,7 @@ Components import and `.map()` over these arrays to render content dynamically.
 
 - [ ] Dark mode toggle with localStorage persistence
 - [ ] Contact form section (email integration TBD)
-- [ ] Projects showcase with card components
+- [x] Projects showcase with card components (`ProjectCard.jsx` + `src/data/projects.js`)
 - [ ] Skills/tech stack display
 - [ ] Responsive mobile design
 
